@@ -47,6 +47,9 @@ bottom_rule1 = ttk.Separator(bottom_right, orient='horizontal')
 bottom_rule2 = ttk.Separator(bottom_right, orient='horizontal')
 bottom_radio_pick = ttk.Radiobutton(bottom_right, text='Pick for me', variable=password_pick, value=1)
 bottom_radio_choose = ttk.Radiobutton(bottom_right, text='Use my own', variable=password_pick, value=0)
+button_frame = ttk.Frame(bottom_right)
+save_button = ttk.Button(button_frame, text='Save')
+delete_button = ttk.Button(button_frame, text='Delete')
 
 # save/edit layout
 site_name_label.pack(fill='x', expand=1)
@@ -64,8 +67,11 @@ bottom_generate_label.pack(expand=1, fill='x')
 bottom_rule1.pack(expand=1, fill='x')
 bottom_radio_pick.pack(expand=1, fill='x')
 bottom_radio_choose.pack(expand=1, fill='x')
-bottom_right.pack(side='left', expand=1, fill='x')
 bottom_rule2.pack(expand=1, fill='x')
+bottom_right.pack(side='left', expand=1, fill='both')
+save_button.pack(side='left', expand=1, fill='both')
+delete_button.pack(side='left', expand=1, fill='both')
+button_frame.pack(expand=1, fill='both')
 
 bottom_frame.pack(expand=1, fill='both')
 
