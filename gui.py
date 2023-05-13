@@ -22,7 +22,8 @@ action_frame = ttk.Frame(table)
 action_button = ttk.Button(action_frame, text="Web")
 table.heading('site', text='Site')
 table.heading('username', text='UserName')
-
+table.heading('action', text='Options')
+table.insert(parent='', index=0, values=('Gmail', 'kedicode@gmail.com', action_button))
 # card section
 middle_right = ttk.Frame(middle_frame)
 card_site = tk.StringVar()
@@ -67,8 +68,14 @@ delete_button = ttk.Button(button_frame, text='Delete/Cancel')
 
 # <editor-fold desc="Master Layout">
 # table layout
-table.pack(side='left', expand=1, fill='y')
-middle_left.pack(side='left', expand=1, fill='y', padx=10)
+header_label.pack()
+card_search_label.pack(side='left')
+card_search_entry.pack(side='left')
+search_frame.pack(expand=1)
+button_frame.pack(expand=1, fill='both')
+action_button.pack(expand=1, fill='both')
+table.pack(side='left', expand=1, fill='both')
+middle_left.pack(side='left', expand=1, fill='both', padx=10)
 
 # result layout
 # card_search_sep.pack(expand=1, fill='x')
