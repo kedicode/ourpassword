@@ -11,11 +11,15 @@ header_label.pack()
 
 # middle section
 middle_frame = ttk.Frame(window)
+
+# Password Table
 middle_left = ttk.Frame(middle_frame)
-middle_left_label = ttk.Label(middle_left, text='Test Label', background='green')
+table = ttk.Treeview(middle_left, columns=('site', 'username'), show='headings')
+table.heading('site', text='Site')
+table.heading('username', text='UserName')
 middle_right = ttk.Frame(middle_frame)
 middle_right_label = ttk.Label(middle_right, text='Text Label', background='yellow')
-middle_left_label.pack(side='left', expand=1, fill='both')
+table.pack(side='left', expand=1, fill='both')
 middle_right_label.pack(side='left', expand=1, fill='both')
 middle_left.pack(side='left', expand=1, fill='both')
 middle_right.pack(side='left', expand=1, fill='both')
