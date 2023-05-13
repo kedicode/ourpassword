@@ -2,29 +2,31 @@ import tkinter as tk
 from tkinter import ttk
 
 window = tk.Tk()
-window.geometry('600x500')
+window.geometry('600x525')
 window.title('OurPasswords')
-
-# header widget
+window.minsize(width=525, height=600)
+# header section
+card_search = tk.StringVar()
 header_label = ttk.Label(window, text='Our Passwords', font=('Times', 30, 'bold'))
-header_label.pack()
+search_frame = ttk.Frame(window)
+card_search_label = ttk.Label(search_frame, text='Search Entries', font=('Times', 15,))
+card_search_entry = ttk.Entry(search_frame, textvariable=card_search, width=20)
 
 # middle section
 middle_frame = ttk.Frame(window)
 
 # Password Table
 middle_left = ttk.Frame(middle_frame)
-table = ttk.Treeview(middle_left, columns=('site', 'username'), show='headings')
+table = ttk.Treeview(middle_left, columns=('site', 'username', 'action'), show='headings')
+action_frame = ttk.Frame(table)
+action_button = ttk.Button(action_frame, text="Web")
 table.heading('site', text='Site')
 table.heading('username', text='UserName')
 
 # card section
 middle_right = ttk.Frame(middle_frame)
-card_search = tk.StringVar()
 card_site = tk.StringVar()
 card_user = tk.StringVar()
-card_search_label = ttk.Label(middle_right, text='Search For existing site and user')
-card_search_entry = ttk.Entry(middle_right, textvariable=card_search)
 card_search_sep = ttk.Separator(middle_right)
 card_site_label = ttk.Label(middle_right, text='Site')
 card_site_entry = ttk.Entry(middle_right, textvariable=card_site)
@@ -69,14 +71,12 @@ table.pack(side='left', expand=1, fill='y')
 middle_left.pack(side='left', expand=1, fill='y', padx=10)
 
 # result layout
-card_search_label.pack(expand=1, fill='x')
-card_search_entry.pack(expand=1, fill='x')
-card_search_sep.pack(expand=1, fill='x')
-card_site_label.pack(expand=1, fill='x')
-card_site_entry.pack(expand=1, fill='x')
-card_user_label.pack(expand=1, fill='x')
-card_user_entry.pack(expand=1, fill='x')
-middle_right.pack(side='left', expand=1, fill='both', padx=10)
+# card_search_sep.pack(expand=1, fill='x')
+# card_site_label.pack(expand=1, fill='x')
+# card_site_entry.pack(expand=1, fill='x')
+# card_user_label.pack(expand=1, fill='x')
+# card_user_entry.pack(expand=1, fill='x')
+# middle_right.pack(side='left', expand=1, fill='both', padx=10)
 
 # save/edit layout
 bottom_edit_label.pack(fill='x', expand=1)
