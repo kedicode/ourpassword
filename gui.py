@@ -17,12 +17,11 @@ middle_frame = ttk.Frame(window)
 
 # Password Table
 middle_left = ttk.Frame(middle_frame)
-table = ttk.Treeview(middle_left, columns=('site', 'username', 'action'), show='headings')
+table = ttk.Treeview(middle_left, columns=('site', 'username'), show='headings')
 action_frame = ttk.Frame(table)
 action_button = ttk.Button(action_frame, text="Web")
 table.heading('site', text='Site')
 table.heading('username', text='UserName')
-table.heading('action', text='Options')
 table.insert(parent='', index=0, values=('Gmail', 'kedicode@gmail.com', action_button))
 # card section
 middle_right = ttk.Frame(middle_frame)
