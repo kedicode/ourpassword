@@ -1,10 +1,12 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 
 window = tk.Tk()
 window.geometry('600x525')
 window.title('OurPasswords')
 window.minsize(width=525, height=600)
+
 # header section
 card_search = tk.StringVar()
 header_label = ttk.Label(window, text='Our Passwords', font=('Times', 30, 'bold'))
@@ -19,10 +21,15 @@ hor1_frame = ttk.Frame(window)
 middle_left = ttk.Frame(hor1_frame)
 table = ttk.Treeview(middle_left, columns=('site', 'username'), show='headings')
 action_frame = ttk.Frame(table)
-action_button = ttk.Button(action_frame, text="Web")
 table.heading('site', text='Site')
 table.heading('username', text='UserName')
-table.insert(parent='', index=0, values=('Gmail', 'kedicode@gmail.com', action_button))
+table.insert(parent='', index=0, values=('Gmail', 'kedicode@gmail.com'))
+
+def get_selected_value():
+    selected_item = table.focus()  # Get the selected item's ID
+    if selected_item:
+        selected_values = table.item(selected_item)['values']
+        return selected_values
 # card section
 middle_right = ttk.Frame(hor1_frame)
 card_site = tk.StringVar()
@@ -53,6 +60,14 @@ password_label = ttk.Label(bottom_left, text='Password')
 password_entry = ttk.Entry(bottom_left, textvariable=password)
 
 # Password generate
+
+def verify_delete():
+    selected = get_selected_value()
+    formatted = ""
+    for item in selected:
+        formatted += f"{item}\n"
+    messagebox.askquestion("Confirmation", f"Are you sure you want to delete\n{formatted}")
+
 password_pick = tk.IntVar()
 bottom_right = ttk.Frame(hor2_frame)
 bottom_generate_label = ttk.Label(bottom_right, text='Password Generate', font=('Times', 15,))
@@ -62,7 +77,7 @@ bottom_radio_pick = ttk.Radiobutton(bottom_right, text='Pick for me', variable=p
 bottom_radio_choose = ttk.Radiobutton(bottom_right, text='Use my own', variable=password_pick, value=0)
 hor3_frame = ttk.Frame(window)
 save_button = ttk.Button(hor3_frame, text='Save')
-delete_button = ttk.Button(hor3_frame, text='Delete/Cancel')
+delete_button = ttk.Button(hor3_frame, text='Delete/Cancel', command=verify_delete)
 copy_button = ttk.Button(hor3_frame, text='Copy')
 open_button = ttk.Button(hor3_frame, text='Web')
 
@@ -73,7 +88,6 @@ header_label.pack()
 card_search_label.pack(side='left')
 card_search_entry.pack(side='left')
 search_frame.pack(expand=1)
-action_button.pack(expand=1, fill='both')
 table.pack(side='left', expand=1, fill='both')
 middle_left.pack(side='left', expand=1, fill='both', padx=10)
 
